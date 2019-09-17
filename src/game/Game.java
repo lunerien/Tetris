@@ -8,17 +8,14 @@ public class Game extends Canvas implements Runnable {
     private static final int HEIGHT = 640, WIDTH = HEIGHT / 12 * 9;
     private Thread thread;
     private boolean running = false;
-
     private Handler handler;
 
     public Game() {
         handler = new Handler();
-
+        this.addKeyListener(new KeyInput(handler));
         new Window(WIDTH, HEIGHT, "Tetris", this);
 
-
-        handler.addObject(new Player(100, 100, ID.Player));
-        handler.addObject(new Player(200, 200, ID.Player));
+        handler.addObject(new Player(WIDTH / 2, 0, 30, ID.Player, 15));
 
     }
 
@@ -59,7 +56,7 @@ public class Game extends Canvas implements Runnable {
 
             if (System.currentTimeMillis() - timer > 1000) {
                 timer += 1000;
-                System.out.println("FPS " + frames);
+                //System.out.println("FPS " + frames);
                 frames = 0;
             }
 
