@@ -1,28 +1,25 @@
 package game;
 
 import java.awt.*;
-import java.util.LinkedList;
 
 public class Handler {
-    LinkedList<GameObject> object = new LinkedList<GameObject>();
 
-    public void tick() {
-        for (GameObject tempObject : object) {
-            tempObject.tick();
-        }
+  private Field field;
+  Element element;
+
+  Handler(Field field, int startPosition, int tileSize) {
+    this.field = field;
+    this.element = new Element(startPosition, tileSize, field);
+  }
+
+  void tick() {
+    field.tick();
+    element.tick();
     }
 
-    public void render(Graphics g) {
-        for (GameObject tempObject : object) {
-            tempObject.render(g);
-        }
+  void render(Graphics g) {
+    field.render(g);
+    element.render(g);
     }
 
-    public void addObject(GameObject object) {
-        this.object.add(object);
-    }
-
-    public void removeObject(GameObject object) {
-        this.object.remove(object);
-    }
 }
